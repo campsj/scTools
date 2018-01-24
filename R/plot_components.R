@@ -15,7 +15,7 @@
 plot_components <- function(sce_object, PCx, PCy, group, folder, palette = 2, gene = FALSE, width = 14, height = 10) {
   if (group == "genotype") {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
-    ggplot(temp, aes(PCa, PCb, col = col)) +
+    ggplot(temp, aes(PCa, PCb, col = col), alpha = 0.8) +
       geom_point(size = 3) +
       labs(x = paste("Principal component ", PCx, sep = ""), y = paste("Principal compoenent ", PCy, sep = ""), color = paste(group)) +
       #guides() +
@@ -26,7 +26,7 @@ plot_components <- function(sce_object, PCx, PCy, group, folder, palette = 2, ge
       ggsave(paste("plots/",folder,"/", group,"_", PCx, "_", PCy,".png", sep=""), width = width, height = height, units = "cm")
   } else if (gene == TRUE) {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], gene_name = exprs(sce_object[group])[1, ])
-    ggplot(temp, aes(PCa, PCb, col = gene_name)) +
+    ggplot(temp, aes(PCa, PCb, col = gene_name), alpha = 0.8) +
       geom_point(size = 3) +
       labs(x = paste("Principal component ", PCx, sep = ""), y = paste("Principal compoenent ", PCy, sep = ""), color = paste(group)) +
       guides(color = guide_colorbar(barwidth = 0.5, barheight = 8, ticks = FALSE)) +
@@ -37,7 +37,7 @@ plot_components <- function(sce_object, PCx, PCy, group, folder, palette = 2, ge
       ggsave(paste("plots/",folder,"/",group,"_", PCx, "_", PCy,".png", sep=""), width = width, height = height, units = "cm")
   } else {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
-    ggplot(temp, aes(PCa, PCb, col = col)) +
+    ggplot(temp, aes(PCa, PCb, col = col), alpha = 0.8) +
       geom_point(size = 3) +
       labs(x = paste("Principal component ", PCx, sep = ""), y = paste("Principal compoenent ", PCy, sep = ""), color = paste(group)) +
       #guides() +
