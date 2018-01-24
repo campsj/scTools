@@ -16,7 +16,7 @@ loop_gene_PC <- function(genes, pcs, dir = dir, subdir = subdir, sce_object = sc
 if (dir.exists(paste(dir, "/", subdir, sep = "")) == FALSE)  {
   dir.create(paste(dir, "/", subdir, sep =""))
 }
-if (exists(pcs) == FALSE) {
+if (exists("pcs") == FALSE) {
   print("Create pcs: list with principal components")
 }
 for(g in genes) {
