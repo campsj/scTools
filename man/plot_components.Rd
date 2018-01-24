@@ -4,8 +4,8 @@
 \alias{plot_components}
 \title{Plot components}
 \usage{
-plot_components(sce_object, PCx, PCy, group, folder, palette = 2,
-  gene = FALSE, width = 14, height = 10)
+plot_components(sce_object, PCx, PCy, group, folder, alpha = 0.8,
+  palette = 2, gene = FALSE, width = 14, height = 10)
 }
 \arguments{
 \item{sce_object}{A single cell experiment object}

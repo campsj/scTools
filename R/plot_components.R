@@ -12,11 +12,11 @@
 #' @param height Height of image in cm
 #' @return PCA plot of single-cell dataset with variables or genes as color scale
 #' @export
-plot_components <- function(sce_object, PCx, PCy, group, folder, palette = 2, gene = FALSE, width = 14, height = 10) {
+plot_components <- function(sce_object, PCx, PCy, group, folder, alpha = 0.8, palette = 2, gene = FALSE, width = 14, height = 10) {
   if (group == "genotype") {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
-    ggplot(temp, aes(PCa, PCb, col = col), alpha = 0.8) +
-      geom_point(size = 3) +
+    ggplot(temp, aes(PCa, PCb, col = col)) +
+      geom_point(size = 3, alpha = alpha) +
       labs(x = paste("Principal component ", PCx, sep = ""), y = paste("Principal compoenent ", PCy, sep = ""), color = paste(group)) +
       #guides() +
       scale_color_manual(values = c("#FFC90C", "#89CAFF")) +
@@ -27,7 +27,7 @@ plot_components <- function(sce_object, PCx, PCy, group, folder, palette = 2, ge
   } else if (gene == TRUE) {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], gene_name = exprs(sce_object[group])[1, ])
     ggplot(temp, aes(PCa, PCb, col = gene_name), alpha = 0.8) +
-      geom_point(size = 3) +
+      geom_point(size = 3, alpha = alpha) +
       labs(x = paste("Principal component ", PCx, sep = ""), y = paste("Principal compoenent ", PCy, sep = ""), color = paste(group)) +
       guides(color = guide_colorbar(barwidth = 0.5, barheight = 8, ticks = FALSE)) +
       scale_color_viridis(option = "viridis") +
@@ -38,7 +38,7 @@ plot_components <- function(sce_object, PCx, PCy, group, folder, palette = 2, ge
   } else {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
     ggplot(temp, aes(PCa, PCb, col = col), alpha = 0.8) +
-      geom_point(size = 3) +
+      geom_point(size = 3, alpha = alpha) +
       labs(x = paste("Principal component ", PCx, sep = ""), y = paste("Principal compoenent ", PCy, sep = ""), color = paste(group)) +
       #guides() +
       scale_color_brewer(type = "qual", palette = palette) +
