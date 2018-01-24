@@ -13,7 +13,7 @@
 #' @param height Height of image in cm
 #' @return PCA plot of single-cell dataset with variables or genes as color scale
 #' @export
-plot_components <- function(sce_object, PCx, PCy, group, folder, alpha = 0.8, palette = 2, gene = FALSE, width = 14, height = 10) {
+plot_components <- function(sce_object, PCx, PCy, group, folder, alpha = 0.8, palette = 2, gene = FALSE, width = 14, height = 10, units = units) {
   if (group == "genotype") {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
     ggplot(temp, aes(PCa, PCb, col = col)) +
@@ -24,7 +24,7 @@ plot_components <- function(sce_object, PCx, PCy, group, folder, alpha = 0.8, pa
       theme_bw(base_size=18) +
       theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
             legend.title = element_blank()) +
-      ggsave(paste("plots/",folder,"/", group,"_", PCx, "_", PCy,".png", sep=""), width = width, height = height, units = "cm")
+      ggsave(paste("plots/",folder,"/", group,"_", PCx, "_", PCy,".png", sep=""), width = width, height = height, units = units)
   } else if (gene == TRUE) {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], gene_name = exprs(sce_object[group])[1, ])
     ggplot(temp, aes(PCa, PCb, col = gene_name), alpha = 0.8) +
@@ -35,7 +35,7 @@ plot_components <- function(sce_object, PCx, PCy, group, folder, alpha = 0.8, pa
       theme_bw(base_size=18) +
       theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
             legend.title = element_text(size = 24, face = "bold")) +
-      ggsave(paste("plots/",folder,"/",group,"_", PCx, "_", PCy,".png", sep=""), width = width, height = height, units = "cm")
+      ggsave(paste("plots/",folder,"/",group,"_", PCx, "_", PCy,".png", sep=""), width = width, height = height, units = units)
   } else {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
     ggplot(temp, aes(PCa, PCb, col = col), alpha = 0.8) +
@@ -46,6 +46,6 @@ plot_components <- function(sce_object, PCx, PCy, group, folder, alpha = 0.8, pa
       theme_bw(base_size=18) +
       theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
             legend.title = element_blank()) +
-      ggsave(paste("plots/",folder,"/",group,"_", PCx, "_", PCy,".png", sep=""), width = width, height = height, units = "cm")
+      ggsave(paste("plots/",folder,"/",group,"_", PCx, "_", PCy,".png", sep=""), width = width, height = height, units = units)
   }
 }
