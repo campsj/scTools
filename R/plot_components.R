@@ -13,7 +13,7 @@
 #' @param height Height of image in cm
 #' @return PCA plot of single-cell dataset with variables or genes as color scale
 #' @export
-plot_components <- function(sce_object, PCx, PCy, group, folder, alpha = 0.8, palette = 2, gene = FALSE, width = 14, height = 10, units = units) {
+plot_components <- function(sce_object, PCx, PCy, group, folder, alpha = 0.8, palette = 2, gene = FALSE, width = 14, height = 10, units = "cm") {
   if (group == "genotype") {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
     ggplot(temp, aes(PCa, PCb, col = col)) +
