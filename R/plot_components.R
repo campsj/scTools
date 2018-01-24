@@ -6,6 +6,7 @@
 #' @param PCy Principal component to plot on y axis
 #' @param group Variable or gene name
 #' @param folder Name of designated folder to save images
+#' @param alpha Decide the transparency of geom
 #' @param palette Number of palette selected from qualitative series on colorbrewer2.org
 #' @param gene If TRUE it will plot genes and no variables
 #' @param width Width of image in cm

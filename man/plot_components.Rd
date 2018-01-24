@@ -18,6 +18,8 @@ plot_components(sce_object, PCx, PCy, group, folder, alpha = 0.8,
 
 \item{folder}{Name of designated folder to save images}
 
+\item{alpha}{Decide the transparency of geom}
+
 \item{palette}{Number of palette selected from qualitative series on colorbrewer2.org}
 
 \item{gene}{If TRUE it will plot genes and no variables}
