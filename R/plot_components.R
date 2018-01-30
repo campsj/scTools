@@ -36,7 +36,7 @@ plot_components <- function(sce_object, PCx, PCy, group, folder, alpha = 0.8, pa
       theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
             legend.title = element_text(size = 24, face = "bold")) +
       ggsave(paste("plots/",folder,"/",group,"_", PCx, "_", PCy,".tiff", sep=""), width = width, height = height, units = units)
-  } else if (group == k) {
+  } else {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
     ggplot(temp, aes(PCa, PCb, col = col), alpha = 0.8) +
       geom_point(size = 3, alpha = alpha) +
