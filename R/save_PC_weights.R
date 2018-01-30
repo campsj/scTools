@@ -6,7 +6,7 @@
 #' @return Save csv files of negative and positive gene weights per principal component
 #' @export
 
-save_PC_weights <- function(df, PC) {
+save_PC_gene_weights <- function(df, PC) {
   df %>%
     rownames_to_column("gene") %>%
     arrange_(PC) %>%
