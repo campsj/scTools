@@ -4,8 +4,9 @@
 \alias{plot_components}
 \title{Plot components}
 \usage{
-plot_components(sce_object, PCx, PCy, group, folder, alpha = 0.8,
-  palette = 2, gene = FALSE, width = 14, height = 10, units = "cm")
+plot_components(sce_object, PCx, PCy, group, folder, subfolder, gene = FALSE,
+  brewer = TRUE, palette = 2, hex_codes, point_size = 3, alpha = 0.8,
+  theme = 18, width = 14, height = 10, units = "cm")
 }
 \arguments{
 \item{sce_object}{A single cell experiment object}
@@ -16,17 +17,27 @@ plot_components(sce_object, PCx, PCy, group, folder, alpha = 0.8,
 
 \item{group}{Variable or gene name}
 
-\item{folder}{Name of designated folder to save images}
+\item{folder}{Name of designated folder to save image}
 
-\item{alpha}{Decide the transparency of geom}
+\item{subfolder}{Name of designated subfolder to save image}
+
+\item{gene}{If TRUE it will plot genes and no variables}
+
+\item{brewer}{If TRUE it will use colorpalettes from colorbrewer2.org}
 
 \item{palette}{Number of palette selected from qualitative series on colorbrewer2.org}
 
-\item{gene}{If TRUE it will plot genes and no variables}
+\item{hex_codes}{Manuel entry of HEX color codes to plot}
+
+\item{point_size}{Size paramter of geom_point}
+
+\item{alpha}{Decide the transparency of geom}
 
 \item{width}{Width of image in cm}
 
 \item{height}{Height of image in cm}
+
+\item{units}{Units to plot image in}
 }
 \value{
 PCA plot of single-cell dataset with variables or genes as color scale
