@@ -18,7 +18,7 @@
 #' @param units Units to plot image in
 #' @return PCA plot of single-cell dataset with variables or genes as color scale
 #' @export
-plot_components <- function(sce_object, PCx, PCy, group, folder, subfolder, gene = FALSE, brewer = TRUE, palette = 2, hex_codes, point_size = 3, alpha = 0.8, theme = 18, width = 12, height = 10, units = "cm") {
+plot_components <- function(sce_object, PCx, PCy, group, folder, subfolder, gene = FALSE, brewer = TRUE, palette = 2, hex_codes, point_size = 3, alpha = 0.8, theme = 18, width = 14, height = 10, units = "cm") {
   if (brewer == FALSE) {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
     ggplot(temp, aes(PCa, PCb, col = col)) +
