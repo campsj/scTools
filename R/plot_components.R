@@ -25,7 +25,8 @@ plot_components <- function(sce_object, PCx, PCy, group, folder, alpha = 0.8, pa
       theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
             legend.title = element_blank()) +
       ggsave(paste("plots/",folder,"/", group,"_", PCx, "_", PCy,".tiff", sep=""), width = width, height = height, units = units)
-  } else if (group == g) {
+  }
+  else if (gene == TRUE) {
     temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], gene_name = exprs(sce_object[group])[1, ])
     ggplot(temp, aes(PCa, PCb, col = gene_name), alpha = 0.8) +
       geom_point(size = 3, alpha = alpha) +
