@@ -6,7 +6,7 @@
 \usage{
 plot_components(sce_object, PCx, PCy, group, folder, subfolder, gene = FALSE,
   brewer = TRUE, palette = 2, hex_codes, point_size = 3, alpha = 0.8,
-  theme = 18, width = 14, height = 10, units = "cm")
+  theme = 18, width = 12, height = 10, units = "cm")
 }
 \arguments{
 \item{sce_object}{A single cell experiment object}
