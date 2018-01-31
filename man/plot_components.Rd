@@ -29,7 +29,7 @@ plot_components(sce_object, PCx, PCy, group, folder, subfolder, gene = FALSE,
 
 \item{hex_codes}{Manuel entry of HEX color codes to plot}
 
-\item{point_size}{Size paramter of geom_point}
+\item{point_size}{Size parameter of geom_point}
 
 \item{alpha}{Decide the transparency of geom}
 
