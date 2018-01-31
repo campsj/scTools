@@ -11,7 +11,7 @@
 #' @param brewer If TRUE it will use colorpalettes from colorbrewer2.org
 #' @param palette Number of palette selected from qualitative series on colorbrewer2.org
 #' @param hex_codes Manuel entry of HEX color codes to plot
-#' @param point_size Size paramter of geom_point
+#' @param point_size Size parameter of geom_point
 #' @param alpha Decide the transparency of geom
 #' @param width Width of image in cm
 #' @param height Height of image in cm
@@ -19,6 +19,9 @@
 #' @return PCA plot of single-cell dataset with variables or genes as color scale
 #' @export
 plot_components <- function(sce_object, PCx, PCy, group, folder, subfolder, gene = FALSE, brewer = TRUE, palette = 2, hex_codes, point_size = 3, alpha = 0.8, theme = 18, width = 14, height = 10, units = "cm") {
+  if (dir.exists(paste(folder, sep = "")) == FALSE)  {
+    dir.create(paste(folder, sep =""))
+  }
   if (dir.exists(paste(folder, "/", subfolder, sep = "")) == FALSE)  {
     dir.create(paste(folder, "/", subfolder, sep =""))
   }
