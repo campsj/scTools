@@ -4,9 +4,10 @@
 \alias{plot_components}
 \title{Plot components}
 \usage{
-plot_components(sce_object, PCx, PCy, group, folder, subfolder, gene = FALSE,
-  brewer = TRUE, palette = 2, hex_codes, point_size = 3, alpha = 0.8,
-  theme = 18, width = 14, height = 10, units = "cm")
+plot_components(sce_object, PCx, PCy, group, gene = FALSE, save = TRUE,
+  folder, subfolder, brewer = TRUE, palette = 2, hex_codes,
+  point_size = 3, alpha = 0.8, theme = 18, width = 14, height = 10,
+  units = "cm")
 }
 \arguments{
 \item{sce_object}{A single cell experiment object}
@@ -17,11 +18,11 @@ plot_components(sce_object, PCx, PCy, group, folder, subfolder, gene = FALSE,
 
 \item{group}{Variable or gene name}
 
+\item{gene}{If TRUE it will plot genes and no variables}
+
 \item{folder}{Name of designated folder to save image}
 
 \item{subfolder}{Name of designated subfolder to save image}
-
-\item{gene}{If TRUE it will plot genes and no variables}
 
 \item{brewer}{If TRUE it will use colorpalettes from colorbrewer2.org}
 
