@@ -22,7 +22,7 @@ export_markers <- function(sce_object, k, padj = 0.01, auroc = 0.8, folder, file
   sce_object %>%
     rowData() %>%
     as_tibble() %>%
-    group_by_(k_clust) %>%
+    group_by_(k_clusts) %>%
     filter_(interp(~ a < x & b > y, a = as.name(k_padj), b = as.name(k_auroc), x = padj, y = auroc)) %>%
     select_("mgi_symbol", "ensembl_gene_id", "log10_mean_counts", k_auroc, k_clusts, k_padj) %>%
     arrange_(k_padj, .by_group = TRUE) %>%
