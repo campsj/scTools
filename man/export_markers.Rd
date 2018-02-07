@@ -4,7 +4,7 @@
 \alias{export_markers}
 \title{Filter and save markers}
 \usage{
-export_markers(sce_object, k, padj = 0.01, auroc = 0.8, folder, filename)
+export_markers(sce_object, k, padj = 0.01, auroc = 0.85, folder, filename)
 }
 \arguments{
 \item{sce_object}{A single cell experiment object}
@@ -15,9 +15,11 @@ export_markers(sce_object, k, padj = 0.01, auroc = 0.8, folder, filename)
 
 \item{auroc}{Area Under Receiving Operating Curve}
 
+\item{folder}{Folder where to export the file to}
+
 \item{cluster}{number of cluster to select}
 
-\item{vector_name}{Name to give the returned vector}
+\item{subfolder}{Subfolder where to export the file to}
 }
 \value{
 Vector of marker genes

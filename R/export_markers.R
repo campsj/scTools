@@ -6,11 +6,12 @@
 #' @param cluster number of cluster to select
 #' @param padj Adjusted p value
 #' @param auroc Area Under Receiving Operating Curve
-#' @param vector_name Name to give the returned vector
+#' @param folder Folder where to export the file to
+#' @param subfolder Subfolder where to export the file to
 #' @return Vector of marker genes
 #' @export
 
-export_markers <- function(sce_object, k, padj = 0.01, auroc = 0.8, folder, filename) {
+export_markers <- function(sce_object, k, padj = 0.01, auroc = 0.85, folder, filename) {
   require(c("SC3", "lazyeval", "dplyr"))
 
   k_clusts <- paste0("sc3_", k, "_markers_clusts", sep = "")
