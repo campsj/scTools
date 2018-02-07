@@ -75,7 +75,7 @@ plot_components <- function(sce_object, PCx, PCy, group, gene = FALSE, save = TR
       temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], gene_name = exprs(sce_object[group])[1, ])
       ggplot(temp, aes(PCa, PCb, col = gene_name), alpha = 0.8) +
         geom_point(size = point_size, alpha = alpha) +
-        labs(x = paste("Principal component ", PCx, sep = ""), y = paste("Principal compoenent ", PCy, sep = ""), color = paste(group)) #+
+        labs(x = paste("Principal component ", PCx, sep = ""), y = paste("Principal compoenent ", PCy, sep = ""), color = paste(group)) +
         guides(color = guide_colorbar(barwidth = 0.5, barheight = 8, ticks = FALSE)) +
         scale_color_viridis(option = "viridis") +
         theme_bw(base_size = theme) +
@@ -86,7 +86,7 @@ plot_components <- function(sce_object, PCx, PCy, group, gene = FALSE, save = TR
       temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
       ggplot(temp, aes(PCa, PCb, col = col), alpha = 0.8) +
         geom_point(size = point_size, alpha = alpha) +
-        labs(x = paste("Principal component ", PCx, sep = ""), y = paste("Principal compoenent ", PCy, sep = ""), color = paste(group)) #+
+        labs(x = paste("Principal component ", PCx, sep = ""), y = paste("Principal compoenent ", PCy, sep = ""), color = paste(group)) +
         scale_color_brewer(type = "qual", palette = palette) +
         theme_bw(base_size = theme) +
         theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
