@@ -17,12 +17,10 @@ export_markers(sce_object, k, padj = 0.01, auroc = 0.85, folder, filename)
 
 \item{folder}{Folder where to export the file to}
 
-\item{cluster}{number of cluster to select}
-
-\item{subfolder}{Subfolder where to export the file to}
+\item{filename}{Name for exported csv file}
 }
 \value{
-Vector of marker genes
+csv file
 }
 \description{
 Filters marker genes based on padj and k and saves them as a csv file

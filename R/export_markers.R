@@ -3,16 +3,15 @@
 #' Filters marker genes based on padj and k and saves them as a csv file
 #' @param sce_object A single cell experiment object
 #' @param k number of clusters
-#' @param cluster number of cluster to select
 #' @param padj Adjusted p value
 #' @param auroc Area Under Receiving Operating Curve
 #' @param folder Folder where to export the file to
-#' @param subfolder Subfolder where to export the file to
-#' @return Vector of marker genes
+#' @param filename Name for exported csv file
+#' @return csv file
 #' @export
 
 export_markers <- function(sce_object, k, padj = 0.01, auroc = 0.85, folder, filename) {
-  require(c("SC3", "lazyeval", "dplyr"))
+  #require(c("SC3", "lazyeval", "dplyr", "rlang"))
 
   k_clusts <- paste0("sc3_", k, "_markers_clusts", sep = "")
   k_auroc <- paste0("sc3_", k, "_markers_auroc", sep = "")
@@ -27,5 +26,5 @@ export_markers <- function(sce_object, k, padj = 0.01, auroc = 0.85, folder, fil
     filter_(interp(~ a < x & b > y, a = as.name(k_padj), b = as.name(k_auroc), x = padj, y = auroc)) %>%
     select_("mgi_symbol", "ensembl_gene_id", "log10_mean_counts", k_auroc, k_clusts, k_padj) %>%
     arrange_(k_padj, .by_group = TRUE) %>%
-    write.csv(paste0(folder, "/", filename, ",.csv"))
+    write.csv(paste0(folder, "/", filename, ".csv"))
 }

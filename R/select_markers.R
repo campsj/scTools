@@ -11,7 +11,7 @@
 #' @export
 
 select_markers <- function(sce_object, k, cluster, padj = 0.01, auroc = 0.8, vector_name = "genes") {
-  require(c("SC3", "lazyeval", "dplyr"))
+  #require(c("SC3", "lazyeval", "dplyr"))
 
   k_clusts <- paste0("sc3_", k, "_markers_clusts", sep = "")
   k_auroc <- paste0("sc3_", k, "_markers_auroc", sep = "")
@@ -24,7 +24,7 @@ select_markers <- function(sce_object, k, cluster, padj = 0.01, auroc = 0.8, vec
     as_tibble() %>%
     filter_(interp(~ a < x & b > y & c == z, a = as.name(k_padj), b = as.name(k_auroc), c = as.name(k_clusts), x = padj, y = auroc, z = cluster)) %>%
     arrange_(k_padj)
-  #[select_("mgi_symbol") %>%
+
   genes <- genes[ ,"mgi_symbol", drop = TRUE]
   assign(paste0(vector_name), genes, envir = .GlobalEnv)
 }
