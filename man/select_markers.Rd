@@ -4,7 +4,7 @@
 \alias{select_markers}
 \title{Select markers}
 \usage{
-select_markers(sce_object, k, cluster, padj = 0.01, auroc = 0.8,
+select_markers(sce_object, k, clust_num, padj = 0.01, auroc = 0.85,
   vector_name = "genes")
 }
 \arguments{
@@ -12,7 +12,7 @@ select_markers(sce_object, k, cluster, padj = 0.01, auroc = 0.8,
 
 \item{k}{number of clusters}
 
-\item{cluster}{number of cluster to select}
+\item{clust_num}{number of cluster to select}
 
 \item{padj}{Adjusted p value}
 

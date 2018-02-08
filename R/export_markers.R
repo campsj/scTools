@@ -29,6 +29,6 @@ export_markers <- function(sce_object, k, padj = 0.01, auroc = 0.85, folder, fil
                    x = padj,
                    y = auroc)) %>%
     select_("mgi_symbol", "ensembl_gene_id", "log10_mean_counts", k_auroc, k_clusts, k_padj) %>%
-    arrange_(k_padj) %>%
+    arrange_(.dots = c(k_clusts, k_padj)) %>%
     write.csv(paste0(folder, "/", filename, ".csv"))
 }
