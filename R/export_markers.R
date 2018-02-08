@@ -17,18 +17,18 @@ export_markers <- function(sce_object, k, padj = 0.01, auroc = 0.85, folder, fil
   k_auroc <- paste0("sc3_", k, "_markers_auroc", sep = "")
   k_padj <- paste0("sc3_", k, "_markers_padj", sep = "")
 
-  sc3_plot_markers(sce_object, k = k, show_pdata = TRUE)
+  #sc3_plot_markers(sce_object, k = k, show_pdata = TRUE)
 
   sce_object %>%
     rowData() %>%
     as_tibble() %>%
-    group_by_(paste0("sc3_", k, "_markers_clusts", sep = "")) %>%
+    #group_by_(k_clusts) %>%
     filter_(interp(~ a < x & b > y,
-                   a = as.name(paste0("sc3_", k, "_markers_padj", sep = "")),
-                   b = as.name(paste0("sc3_", k, "_markers_auroc", sep = "")),
+                   a = as.name(k_padj),
+                   b = as.name(k_auroc),
                    x = padj,
                    y = auroc)) %>%
-    select_("mgi_symbol", "ensembl_gene_id", "log10_mean_counts", paste0("sc3_", k, "_markers_auroc", sep = ""), paste0("sc3_", k, "_markers_clusts", sep = ""), paste0("sc3_", k, "_markers_padj", sep = "")) %>%
-    arrange_(paste0("sc3_", k, "_markers_padj", sep = ""), .by_group = TRUE) %>%
+    select_("mgi_symbol", "ensembl_gene_id", "log10_mean_counts", k_auroc, k_clusts, k_padj) %>%
+    arrange_(k_padj) %>%
     write.csv(paste0(folder, "/", filename, ".csv"))
 }
