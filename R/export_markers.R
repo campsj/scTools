@@ -22,9 +22,13 @@ export_markers <- function(sce_object, k, padj = 0.01, auroc = 0.85, folder, fil
   sce_object %>%
     rowData() %>%
     as_tibble() %>%
-    group_by(get_expr(sym(k_clusts))) %>%
-    filter_(interp(~ a < x & b > y, a = as.name(k_padj), b = as.name(k_auroc), x = padj, y = auroc)) %>%
-    select_("mgi_symbol", "ensembl_gene_id", "log10_mean_counts", k_auroc, k_clusts, k_padj) %>%
-    arrange(get_expr(sym(k_padj)), .by_group = TRUE) %>%
+    group_by_(paste0("sc3_", k, "_markers_clusts", sep = "")) %>%
+    filter_(interp(~ a < x & b > y,
+                   a = as.name(paste0("sc3_", k, "_markers_padj", sep = "")),
+                   b = as.name(paste0("sc3_", k, "_markers_auroc", sep = "")),
+                   x = padj,
+                   y = auroc)) %>%
+    select_("mgi_symbol", "ensembl_gene_id", "log10_mean_counts", paste0("sc3_", k, "_markers_auroc", sep = ""), paste0("sc3_", k, "_markers_clusts", sep = ""), paste0("sc3_", k, "_markers_padj", sep = "")) %>%
+    arrange_(paste0("sc3_", k, "_markers_padj", sep = ""), .by_group = TRUE) %>%
     write.csv(paste0(folder, "/", filename, ".csv"))
 }
