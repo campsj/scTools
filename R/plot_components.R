@@ -29,7 +29,7 @@ plot_components <- function(sce_object, PCx, PCy, group, gene = FALSE, save = TR
   }
     if (brewer == FALSE) {
       temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
-      ggplot(temp, aes(PCa, PCb, col = col, shape = shape)) +
+      ggplot(temp, aes(PCa, PCb, col = col)) +
         geom_point(size = point_size, alpha = alpha) +
         labs(x = paste("Principal component ", PCx, sep = ""), y = paste("Principal compoenent ", PCy, sep = ""), color = paste(group)) +
         scale_color_manual(values = hex_codes) +
