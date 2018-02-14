@@ -38,6 +38,7 @@ plot_components <- function(sce_object, PCx, PCy, group, gene = FALSE, save = TR
               legend.title = element_blank()) +
         ggsave(paste(folder, "/",subfolder, "/", group, "_", PCx, "_", PCy,".tiff", sep=""), width = width, height = height, units = units)
   } else if (gene == TRUE) {
+      if (g %in% row.names(sce_object))
       temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], gene_name = Biobase::exprs(sce_object[group])[1, ])
       ggplot(temp, aes(PCa, PCb, col = gene_name), alpha = 0.8) +
         geom_point(size = point_size, alpha = alpha) +
@@ -72,6 +73,7 @@ plot_components <- function(sce_object, PCx, PCy, group, gene = FALSE, save = TR
               legend.title = element_blank()) #+
         #ggsave(paste(folder, "/",subfolder, "/", group, "_", PCx, "_", PCy,".tiff", sep=""), width = width, height = height, units = units)
   } else if (gene == TRUE) {
+      if (g %in% row.names(sce_object))
       temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], gene_name = Biobase::exprs(sce_object[group])[1, ])
       ggplot(temp, aes(PCa, PCb, col = gene_name), alpha = 0.8) +
         geom_point(size = point_size, alpha = alpha) +
