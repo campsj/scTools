@@ -6,7 +6,6 @@
 #' @param PCy Principal component to plot on y axis
 #' @param group Variable or gene name
 #' @param folder Name of designated folder to save image
-#' @param subfolder Name of designated subfolder to save image
 #' @param gene If TRUE it will plot genes and no variables
 #' @param brewer If TRUE it will use colorpalettes from colorbrewer2.org
 #' @param palette Number of palette selected from qualitative series on colorbrewer2.org
@@ -18,7 +17,7 @@
 #' @param units Units to plot image in
 #' @return PCA plot of single-cell dataset with variables or genes as color scale
 #' @export
-plot_components <- function(sce_object, PCx, PCy, group, gene = FALSE, save = TRUE, folder, subfolder,  brewer = TRUE, palette = 2, hex_codes, point_size = 3, alpha = 0.8, theme = 18, width = 14, height = 10, units = "cm") {
+plot_components <- function(sce_object, PCx, PCy, group, gene = FALSE, save = TRUE, folder, brewer = TRUE, palette = 2, hex_codes, point_size = 3, alpha = 0.8, theme = 18, width = 14, height = 10, units = "cm") {
   if (save == TRUE) {
 
     if (dir.exists(paste(folder, sep = "")) == FALSE)  {
@@ -36,7 +35,7 @@ plot_components <- function(sce_object, PCx, PCy, group, gene = FALSE, save = TR
         theme_bw(base_size = theme) +
         theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
               legend.title = element_blank()) +
-        ggsave(paste(folder, "/",subfolder, "/", group, "_", PCx, "_", PCy,".tiff", sep=""), width = width, height = height, units = units)
+        ggsave(paste(folder, "/", group, "_", PCx, "_", PCy,".tiff", sep=""), width = width, height = height, units = units)
   } else if (gene == TRUE) {
       if (g %in% row.names(sce_object))
       temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], gene_name = Biobase::exprs(sce_object[group])[1, ])
@@ -48,7 +47,7 @@ plot_components <- function(sce_object, PCx, PCy, group, gene = FALSE, save = TR
         theme_bw(base_size = theme) +
         theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
               legend.title = element_text(size = 24, face = "bold")) +
-        ggsave(paste(folder, "/", subfolder, "/", group, "_", PCx, "_", PCy,".tiff", sep=""), width = width, height = height, units = units)
+        ggsave(paste(folder, "/", group, "_", PCx, "_", PCy,".tiff", sep=""), width = width, height = height, units = units)
   } else {
       temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
       ggplot(temp, aes(PCa, PCb, col = col), alpha = 0.8) +
@@ -58,7 +57,7 @@ plot_components <- function(sce_object, PCx, PCy, group, gene = FALSE, save = TR
         theme_bw(base_size = theme) +
         theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
               legend.title = element_blank()) +
-        ggsave(paste(folder, "/", subfolder, "/", group, "_", PCx, "_", PCy,".tiff", sep=""), width = width, height = height, units = units)
+        ggsave(paste(folder, "/", group, "_", PCx, "_", PCy,".tiff", sep=""), width = width, height = height, units = units)
     }
   }
   else if (save == FALSE) {
