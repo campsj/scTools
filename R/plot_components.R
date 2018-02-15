@@ -23,9 +23,7 @@ plot_components <- function(sce_object, PCx, PCy, group, gene = FALSE, save = TR
     if (dir.exists(paste(folder, sep = "")) == FALSE)  {
       dir.create(paste(folder, sep =""))
   }
-    if (dir.exists(paste(folder, "/", subfolder, sep = "")) == FALSE)  {
-      dir.create(paste(folder, "/", subfolder, sep =""))
-  }
+
     if (brewer == FALSE) {
       temp <- data.frame(PCa = sce_object[[PCx]], PCb = sce_object[[PCy]], col = sce_object[[group]])
       ggplot(temp, aes(PCa, PCb, col = col)) +
