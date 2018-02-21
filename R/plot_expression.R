@@ -30,5 +30,5 @@ plot_expression <- function(sce_object, x, gene, group, folder, violin_fill = "#
     scale_color_brewer(type = brew_type, palette = brew_palette) +
     theme_bw(base_size = theme) +
     theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),legend.title = element_text(size = 20, face = "bold")) +
-    ggsave(paste0(folder, gene, "/_expression.tiff", sep = ""), width = width, height = height, units = "cm")
+    ggsave(paste0(folder, "/", gene, "_expression.tiff", sep = ""), width = width, height = height, units = "cm")
 }
