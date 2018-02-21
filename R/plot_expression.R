@@ -18,6 +18,9 @@
 #' @export
 
 plot_expression <- function(sce_object, x, gene, group, folder, violin_fill = "#f0f0f0", brew_type = "qual", brew_palette = "Set1", point_size = 1.5, scatter_width = 0.2, theme = 12,  width = 12, height = 10) {
+  if (dir.exists(paste(folder, sep = "")) == FALSE)  {
+    dir.create(paste(folder, sep =""))
+  }
   gene %in% row.names(sce_object)
   temp <- data.frame(X = sce_object[[x]], Y = logcounts(sce_object[gene])[1, ], group = sce_object[[group]])
   ggplot(temp, aes(X, Y)) +
@@ -27,5 +30,5 @@ plot_expression <- function(sce_object, x, gene, group, folder, violin_fill = "#
     scale_color_brewer(type = brew_type, palette = brew_palette) +
     theme_bw(base_size = theme) +
     theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),legend.title = element_text(size = 20, face = "bold")) +
-    ggsave(paste0(folder, gene, "_expression.tiff", sep = ""), width = width, height = height, units = "cm")
+    ggsave(paste0(folder, gene, "/_expression.tiff", sep = ""), width = width, height = height, units = "cm")
 }
