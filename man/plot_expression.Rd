@@ -4,36 +4,16 @@
 \alias{plot_expression}
 \title{Plot expression}
 \usage{
-plot_expression(sce_object, x, gene, group, folder, violin_fill = "#f0f0f0",
-  brew_type = "qual", brew_palette = "Set1", point_size = 1.5,
-  scatter_width = 0.2, theme = 12, width = 12, height = 10)
+plot_expression(sce_object, var, group, theme = 12)
 }
 \arguments{
 \item{sce_object}{A single cell experiment object}
 
-\item{x}{Groups to plot on x axis}
+\item{var}{Gene or genes to plot}
 
-\item{gene}{Principal component to plot on y axis}
+\item{group}{Grouping variable}
 
-\item{group}{Color variable}
-
-\item{folder}{Name of designated folder to save image}
-
-\item{violin_fill}{Fill color for violin}
-
-\item{brew_type}{Kind color type to plot: sequential, diverging or qualitative}
-
-\item{brew_palette}{Number of palette selected from qualitative series on colorbrewer2.org}
-
-\item{point_size}{Size parameter of geom_point}
-
-\item{scatter_width}{Measure how wide points should scatter}
-
-\item{theme}{Number of theme_size}
-
-\item{width}{Width of image in cm}
-
-\item{height}{Height of image in cm}
+\item{theme}{Size of theme}
 }
 \value{
 Gene expression plot
