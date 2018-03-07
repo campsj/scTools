@@ -12,10 +12,20 @@
 #' @return Ggplot object plot of single-cell dataset with variables or genes as color scale
 #' @export
 plot_dims <- function(sce_object, x, y, var, palette = "Dark2", hex_codes = NA, point_size = 3, alpha = 1, theme = 18) {
-    if (length(var) == sum(var %in% row.names(sce_object))) {
+    if (sum(var %in% row.names(sce_object)) >= 1) {
       if (length(var) > 1) {
-        rowData <- t(data.frame(logcounts(sce_object)[var, ]))
-        colData <- data.frame(Dim1 = sce_temp[[x]], Dim2 = sce_temp[[y]])
+        rowData <- NULL
+        #rowData <- t(data.frame(logcounts(sce_object)[var, ]))
+        for (gene in var) {
+          if (gene %in% row.names(sce_object)) {
+            rowData[[gene]]  <- logcounts(sce_object)[gene, ]
+          }
+          else {
+            print(paste0(gene, " not expressed or written wrong!", sep = ""))
+          }
+        }
+        rowData <- data.frame(rowData)
+        colData <- data.frame(Dim1 = sce_object[[x]], Dim2 = sce_object[[y]])
         temp <- cbind(rowData, colData)
         temp <- gather(temp, gene, logcounts, -Dim1, - Dim2)
 
@@ -40,7 +50,7 @@ plot_dims <- function(sce_object, x, y, var, palette = "Dark2", hex_codes = NA, 
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
       }
     }
-    else if (length(var) != sum(var %in% row.names(sce_object))) {
+    else if (sum(var %in% row.names(sce_object)) == 0) {
       if (is.na(hex_codes) == TRUE) {
         temp <- data.frame(x.var = sce_object[[x]], y.var = sce_object[[y]], col = sce_object[[var]])
         ggplot(temp, aes(x.var, y.var, col = col), alpha = 0.8) +
