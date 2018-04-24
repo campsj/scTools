@@ -27,7 +27,7 @@ plot_dims <- function(sce_object, x = "PC1", y = "PC2", var, palette = "Dark2", 
         rowData <- data.frame(rowData)
         colData <- data.frame(Dim1 = sce_object[[x]], Dim2 = sce_object[[y]])
         temp <- cbind(rowData, colData)
-        temp <- gather(temp, gene, logcounts, -Dim1, - Dim2)
+        temp <- tidyr::gather(temp, gene, logcounts, -Dim1, - Dim2)
 
         ggplot(temp, aes(Dim1, Dim2, col = logcounts)) +
           geom_point(size = point_size) +
