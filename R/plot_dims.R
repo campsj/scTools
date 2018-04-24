@@ -11,7 +11,7 @@
 #' @param alpha Decide the transparency of geom
 #' @return Ggplot object plot of single-cell dataset with variables or genes as color scale
 #' @export
-plot_dims <- function(sce_object, x, y, var, palette = "Dark2", hex_codes = NA, point_size = 3, alpha = 1, theme = 18) {
+plot_dims <- function(sce_object, x = "PC1", y = "PC2", var, palette = "Dark2", hex_codes = NA, point_size = 3, alpha = 1, theme = 18) {
     if (sum(var %in% row.names(sce_object)) >= 1) {
       if (length(var) > 1) {
         rowData <- NULL
@@ -34,7 +34,7 @@ plot_dims <- function(sce_object, x, y, var, palette = "Dark2", hex_codes = NA, 
           facet_wrap(~ gene) +
           #labs(x = x, y = y, color = group) +
           #guides(color = guide_colorbar(barwidth = 8, barheight = 1, ticks = FALSE, title.vjust = c(1.3), title = "Logcounts")) +
-          scale_color_viridis(option = "inferno") +
+          viridis::scale_color_viridis(option = "inferno") +
           theme_bw(base_size = theme) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
                 axis.title = element_blank(), axis.text = element_blank(), axis.ticks = element_blank())
@@ -45,7 +45,7 @@ plot_dims <- function(sce_object, x, y, var, palette = "Dark2", hex_codes = NA, 
           geom_point(size = point_size, alpha = alpha) +
           labs(x = x, y = y, color = var) +
           #guides(color = guide_colorbar(barwidth = 0.5, barheight = 8, ticks = FALSE)) +
-          scale_color_viridis(option = "inferno") +
+          viridis::scale_color_viridis(option = "inferno") +
           theme_bw(base_size = theme) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
       }
@@ -56,7 +56,7 @@ plot_dims <- function(sce_object, x, y, var, palette = "Dark2", hex_codes = NA, 
         ggplot(temp, aes(x.var, y.var, col = col), alpha = 0.8) +
           geom_point(size = point_size, alpha = alpha) +
           labs(x = x, y = y, color = var) +
-          scale_color_brewer(type = "qual", palette = palette) +
+          RColorBrewer::scale_color_brewer(type = "qual", palette = palette) +
           theme_bw(base_size = theme) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
       }
@@ -65,7 +65,7 @@ plot_dims <- function(sce_object, x, y, var, palette = "Dark2", hex_codes = NA, 
         ggplot(temp, aes(x.var, y.var, col = col)) +
           geom_point(size = point_size, alpha = alpha) +
           labs(x = x, y = y, color = var) +
-          scale_color_manual(values = hex_codes) +
+          RColorBrewer::scale_color_manual(values = hex_codes) +
           theme_bw(base_size = theme) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
       }
