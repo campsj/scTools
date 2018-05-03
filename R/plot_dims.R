@@ -11,11 +11,12 @@
 #' @param point_size Size parameter of geom_point
 #' @param alpha Decide the transparency of geom
 #' @param theme numerical specifying base size of theme
+#' @param label_size numerical specifying size of facet titles ie genes
 #' @param nrow numerical specifying the amount of rows
 #' @param ncol numerical specifying the amount of columns
 #' @return Ggplot object plot of single-cell dataset with variables or genes as color scale
 #' @export
-plot_dims <- function(sce_object, x = "PC1", y = "PC2", color, shape = NA, labels = NA, col_values = NA, point_size = 3, alpha = 1, theme = 12, nrow = NULL, ncol = NULL) {
+plot_dims <- function(sce_object, x = "PC1", y = "PC2", color, shape = NA, labels = NA, col_values = NA, point_size = 3, alpha = 1, theme = 12, label_size = 18, nrow = NULL, ncol = NULL) {
     if (sum(color %in% row.names(sce_object)) >= 1) {
       if (length(color) > 1) {
         rowData <- NULL
@@ -32,6 +33,7 @@ plot_dims <- function(sce_object, x = "PC1", y = "PC2", color, shape = NA, label
         colData <- data.frame(Dim1 = sce_object[[x]], Dim2 = sce_object[[y]])
         temp <- cbind(rowData, colData)
         temp <- tidyr::gather(temp, gene, logcounts, -Dim1, - Dim2)
+        temp$gene <- factor(temp$gene, levels = color)
 
         ggplot(temp, aes(Dim1, Dim2, col = logcounts)) +
           geom_point(size = point_size) +
@@ -43,7 +45,7 @@ plot_dims <- function(sce_object, x = "PC1", y = "PC2", color, shape = NA, label
           theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                 axis.text = element_blank(), axis.ticks = element_blank(),
                 axis.title = element_blank(), axis.line = element_blank(), strip.background = element_blank(),
-                strip.text.x = element_text(face = "bold.italic", size = theme + 4), legend.justification = c(0, 1))
+                strip.text.x = element_text(face = "bold.italic", size = label_size), legend.justification = c(0, 1))
       }
       else if (length(color) == 1) {
         temp <- data.frame(x.var = sce_object[[x]], y.var = sce_object[[y]], gene_name = Biobase::exprs(sce_object[color])[1, ])
