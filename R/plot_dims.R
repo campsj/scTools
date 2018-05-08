@@ -40,7 +40,7 @@ plot_dims <- function(sce_object, x = "PC1", y = "PC2", color, shape = NA, label
           facet_wrap(~ gene, labeller = labeller(gene = labels), nrow = nrow, ncol = ncol) +
           #labs(x = x, y = y, color = group) +
           #guides(color = guide_colorbar(barwidth = 8, barheight = 1, ticks = FALSE, title.vjust = c(1.3), title = "Logcounts")) +
-          viridis::scale_color_viridis(option = "inferno", guide = guide_colourbar(ticks = FALSE)) +
+          #viridis::scale_color_viridis(option = "plasma", guide = guide_colourbar(ticks = FALSE)) +
           theme_bw(base_size = theme) +
           theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                 axis.text = element_blank(), axis.ticks = element_blank(),
@@ -53,7 +53,7 @@ plot_dims <- function(sce_object, x = "PC1", y = "PC2", color, shape = NA, label
           geom_point(size = point_size, alpha = alpha) +
           labs(x = x, y = y, color = color) +
           #guides(color = guide_colorbar(barwidth = 0.5, barheight = 8, ticks = FALSE)) +
-          viridis::scale_color_viridis(option = "inferno") +
+          #viridis::scale_color_viridis(option = "plasma") +
           theme_bw(base_size = theme) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
       }
