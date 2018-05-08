@@ -35,7 +35,7 @@
 #' plot_cell_trajectory(lung, markers="MYH3")
 #' }
 
-plot_cell_trajectory_scTools <- function(cds,
+plot_cell_trajectory <- function(cds,
                                          x=1,
                                          y=2,
                                          color_by="State",
@@ -133,14 +133,14 @@ plot_cell_trajectory_scTools <- function(cds,
         g <- ggplot(data=data_df, aes(x=data_dim_1, y=data_dim_2)) + geom_point(aes(color= value), size=I(cell_size), na.rm = TRUE) +
           scale_color_viridis(name = paste0("value"), ...) + facet_wrap(~feature_label)
       } else {
-        g <- ggplot(data=data_df, aes(x=data_dim_1, y=data_dim_2)) + geom_point(aes(color=log10(value + 0.1)), size=I(cell_size), na.rm = TRUE) +
-          scale_color_viridis(name = paste0("log10(value + 0.1)"), ...) + facet_wrap(~feature_label)
+        g <- ggplot(data=data_df, aes(x=data_dim_1, y=data_dim_2)) + geom_point(aes(color=log2(value + 1)), size=I(cell_size), na.rm = TRUE) +
+          scale_color_viridis(name = paste0("log2(value + 1)"), ...) + facet_wrap(~feature_label)
       }
     } else {
       if(markers_linear){
         g <- ggplot(data=data_df, aes(x=data_dim_1, y=data_dim_2, size= (value * 0.1))) + facet_wrap(~feature_label)
       } else {
-        g <- ggplot(data=data_df, aes(x=data_dim_1, y=data_dim_2, size=log10(value + 0.1))) + facet_wrap(~feature_label)
+        g <- ggplot(data=data_df, aes(x=data_dim_1, y=data_dim_2, size=log2(value + 1))) + facet_wrap(~feature_label)
       }
     }
   } else {
