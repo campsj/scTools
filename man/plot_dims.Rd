@@ -4,8 +4,9 @@
 \alias{plot_dims}
 \title{Plot reduced dimensions}
 \usage{
-plot_dims(sce_object, x, y, var, palette = "Dark2", hex_codes = NA,
-  point_size = 3, alpha = 1, theme = 18)
+plot_dims(sce_object, x = "PC1", y = "PC2", color, shape = NA,
+  labels = NA, col_values = NA, point_size = 3, alpha = 1, theme = 12,
+  label_size = 18, nrow = NULL, ncol = NULL)
 }
 \arguments{
 \item{sce_object}{A single cell experiment object}
@@ -14,15 +15,25 @@ plot_dims(sce_object, x, y, var, palette = "Dark2", hex_codes = NA,
 
 \item{y}{Principal component to plot on y axis}
 
-\item{var}{Variable or gene name}
+\item{color}{factor for color}
 
-\item{palette}{Number of palette selected from qualitative series on colorbrewer2.org}
+\item{shape}{factor for shape}
 
-\item{hex_codes}{Manuel entry of HEX color codes to plot}
+\item{labels}{list containing labels for gene names}
+
+\item{col_values}{Manuel entry of colors or HEX color codes to plot}
 
 \item{point_size}{Size parameter of geom_point}
 
 \item{alpha}{Decide the transparency of geom}
+
+\item{theme}{numerical specifying base size of theme}
+
+\item{label_size}{numerical specifying size of facet titles ie genes}
+
+\item{nrow}{numerical specifying the amount of rows}
+
+\item{ncol}{numerical specifying the amount of columns}
 }
 \value{
 Ggplot object plot of single-cell dataset with variables or genes as color scale

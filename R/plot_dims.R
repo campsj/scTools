@@ -18,7 +18,7 @@
 #' @export
 plot_dims <- function(sce_object, x = "PC1", y = "PC2", color, shape = NA, labels = NA, col_values = NA, point_size = 3, alpha = 1, theme = 12, label_size = 18, nrow = NULL, ncol = NULL) {
     if (sum(color %in% row.names(sce_object)) >= 1) {
-      if (length(color) > 1) {
+      #if (length(color) > 1) {
         rowData <- NULL
         #rowData <- t(data.frame(logcounts(sce_object)[color, ]))
         for (gene in color) {
@@ -36,7 +36,7 @@ plot_dims <- function(sce_object, x = "PC1", y = "PC2", color, shape = NA, label
         temp$gene <- factor(temp$gene, levels = color)
 
         ggplot(temp, aes(Dim1, Dim2, col = logcounts)) +
-          geom_point(size = point_size) +
+          geom_point(size = point_size, alpha = alpha) +
           facet_wrap(~ gene, labeller = labeller(gene = labels), nrow = nrow, ncol = ncol) +
           #labs(x = x, y = y, color = group) +
           #guides(color = guide_colorbar(barwidth = 8, barheight = 1, ticks = FALSE, title.vjust = c(1.3), title = "Logcounts")) +
@@ -45,26 +45,25 @@ plot_dims <- function(sce_object, x = "PC1", y = "PC2", color, shape = NA, label
           theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                 axis.text = element_blank(), axis.ticks = element_blank(),
                 axis.title = element_blank(), axis.line = element_blank(), strip.background = element_blank(),
-                strip.text.x = element_text(face = "bold.italic", size = label_size), legend.justification = c(0, 1))
-      }
-      else if (length(color) == 1) {
-        temp <- data.frame(x.var = sce_object[[x]], y.var = sce_object[[y]], gene_name = Biobase::exprs(sce_object[color])[1, ])
-        ggplot(temp, aes(x.var, y.var, col = gene_name), alpha = 1) +
-          geom_point(size = point_size, alpha = alpha) +
-          labs(x = x, y = y, color = color) +
+                strip.text.x = element_text(face = "italic", size = label_size), legend.justification = c(0, 1))
+    #  }
+    #  else if (length(color) == 1) {
+    #    temp <- data.frame(x.var = sce_object[[x]], y.var = sce_object[[y]], gene_name = Biobase::exprs(sce_object[color])[1, ])
+    #    ggplot(temp, aes(x.var, y.var, col = gene_name), alpha = 1) +
+    #      geom_point(size = point_size, alpha = alpha) +
+    #      labs(x = x, y = y, color = color) +
           #guides(color = guide_colorbar(barwidth = 0.5, barheight = 8, ticks = FALSE)) +
           #viridis::scale_color_viridis(option = "plasma") +
-          theme_bw(base_size = theme) +
-          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
-      }
+    #      theme_bw(base_size = theme) +
+    #      theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+    #  }
     }
     else if (sum(color %in% row.names(sce_object)) == 0) {
       if (is.na(shape) == FALSE) {
         temp <- data.frame(x.var = sce_object[[x]], y.var = sce_object[[y]], col.var = sce_object[[color]], shape.var = sce_object[[shape]])
       }
-      else {
-        shape.var <- c("1")
-        temp <- data.frame(x.var = sce_object[[x]], y.var = sce_object[[y]], col.var = sce_object[[color]])
+      else if (is.na(shape) == TRUE) {
+        temp <- data.frame(x.var = sce_object[[x]], y.var = sce_object[[y]], col.var = sce_object[[color]], shape.var = "1")
       }
       if (is.na(col_values) == TRUE) {
         ggplot(temp, aes(x.var, y.var, col = col.var, shape = shape.var)) +

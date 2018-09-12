@@ -4,7 +4,7 @@
 \alias{plot_expression}
 \title{Plot expression}
 \usage{
-plot_expression(sce_object, var, group, theme = 12)
+plot_expression(sce_object, var, group, theme = 12, facet = "vertical")
 }
 \arguments{
 \item{sce_object}{A single cell experiment object}
@@ -14,6 +14,8 @@ plot_expression(sce_object, var, group, theme = 12)
 \item{group}{Grouping variable}
 
 \item{theme}{Size of theme}
+
+\item{facet}{Orientation of facets}
 }
 \value{
 Gene expression plot
