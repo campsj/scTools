@@ -4,7 +4,8 @@
 \alias{export_markers}
 \title{Filter and save markers}
 \usage{
-export_markers(sce_object, k, padj = 0.01, auroc = 0.85, folder, filename)
+export_markers(sce_object, k, padj = 0.01, auroc = 0.85, folder,
+  filename)
 }
 \arguments{
 \item{sce_object}{A single cell experiment object}

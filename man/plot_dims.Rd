@@ -5,8 +5,8 @@
 \title{Plot reduced dimensions}
 \usage{
 plot_dims(sce_object, x = "PC1", y = "PC2", color, shape = NA,
-  labels = NA, col_values = NA, point_size = 3, alpha = 1, theme = 12,
-  label_size = 18, nrow = NULL, ncol = NULL)
+  labels = NA, col_values = NA, point_size = 3, alpha = 1,
+  theme = 12, label_size = 18, nrow = NULL, ncol = NULL)
 }
 \arguments{
 \item{sce_object}{A single cell experiment object}

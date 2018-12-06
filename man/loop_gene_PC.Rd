@@ -5,8 +5,8 @@
 \title{Loop over genes and components vector}
 \usage{
 loop_gene_PC(genes, pcs, dir = dir, subdir = subdir,
-  sce_object = sce_object, alpha = alpha, width = "14", height = "10",
-  units = "cm")
+  sce_object = sce_object, alpha = alpha, width = "14",
+  height = "10", units = "cm")
 }
 \arguments{
 \item{genes}{Vector of genes names}

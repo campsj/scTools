@@ -4,7 +4,8 @@
 \alias{plot_expression}
 \title{Plot expression}
 \usage{
-plot_expression(sce_object, var, group, theme = 12, facet = "vertical")
+plot_expression(sce_object, var, group, theme = 12, facet = "vertical",
+  type = "violin", scale = "width")
 }
 \arguments{
 \item{sce_object}{A single cell experiment object}
@@ -16,6 +17,10 @@ plot_expression(sce_object, var, group, theme = 12, facet = "vertical")
 \item{theme}{Size of theme}
 
 \item{facet}{Orientation of facets}
+
+\item{type}{type of plot, option for violin or boxplot}
+
+\item{scale}{Set scale of violin, if "area" (default), all violins have the same area (before trimming the tails). If "count", areas are scaled proportionally to the number of observations. If "width", all violins have the same maximum width.}
 }
 \value{
 Gene expression plot

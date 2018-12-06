@@ -41,11 +41,7 @@ plot_dims <- function(sce_object, x = "PC1", y = "PC2", color, shape = NA, label
           #labs(x = x, y = y, color = group) +
           #guides(color = guide_colorbar(barwidth = 8, barheight = 1, ticks = FALSE, title.vjust = c(1.3), title = "Logcounts")) +
           #viridis::scale_color_viridis(option = "plasma", guide = guide_colourbar(ticks = FALSE)) +
-          theme_bw(base_size = theme) +
-          theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-                axis.text = element_blank(), axis.ticks = element_blank(),
-                axis.title = element_blank(), axis.line = element_blank(), strip.background = element_blank(),
-                strip.text.x = element_text(face = "italic", size = label_size), legend.justification = c(0, 1))
+          theme_bw(base_size = theme)
     #  }
     #  else if (length(color) == 1) {
     #    temp <- data.frame(x.var = sce_object[[x]], y.var = sce_object[[y]], gene_name = Biobase::exprs(sce_object[color])[1, ])
@@ -69,18 +65,14 @@ plot_dims <- function(sce_object, x = "PC1", y = "PC2", color, shape = NA, label
         ggplot(temp, aes(x.var, y.var, col = col.var, shape = shape.var)) +
           geom_point(size = point_size, alpha = alpha) +
           labs(x = x, y = y, color = color) +
-          theme_bw(base_size = theme) +
-          theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-                axis.line = element_line(colour = "black"), axis.text = element_blank(), axis.ticks = element_blank())
+          theme_bw(base_size = theme)
       }
       else {
         ggplot(temp, aes(x.var, y.var, col = col.var, shape = shape.var)) +
           geom_point(size = point_size, alpha = alpha) +
           labs(x = x, y = y, color = color) +
           scale_color_manual(values = col_values) +
-          theme_bw(base_size = theme) +
-          theme(panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-                axis.line = element_line(colour = "black"), axis.text = element_blank(), axis.ticks = element_blank())
+          theme_bw(base_size = theme)
       }
     }
   }
