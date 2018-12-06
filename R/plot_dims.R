@@ -38,9 +38,6 @@ plot_dims <- function(sce_object, x = "PC1", y = "PC2", color, shape = NA, label
         ggplot(temp, aes(Dim1, Dim2, col = logcounts)) +
           geom_point(size = point_size, alpha = alpha) +
           facet_wrap(~ gene, labeller = labeller(gene = labels), nrow = nrow, ncol = ncol) +
-          #labs(x = x, y = y, color = group) +
-          #guides(color = guide_colorbar(barwidth = 8, barheight = 1, ticks = FALSE, title.vjust = c(1.3), title = "Logcounts")) +
-          #viridis::scale_color_viridis(option = "plasma", guide = guide_colourbar(ticks = FALSE)) +
           theme_bw(base_size = theme)
     #  }
     #  else if (length(color) == 1) {

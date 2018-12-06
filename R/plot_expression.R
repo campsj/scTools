@@ -42,16 +42,12 @@ if (facet == "vertical") {
   p +
     facet_grid(gene ~ ., scales = "free") +
     labs(y = "Expression (logcounts)", fill = "Cluster") +
-    #scale_fill_manual(values = c("#1f78b4", "#b2df8a")) +
-    #scale_fill_brewer() +
     theme_bw(base_size = theme)
 }
 else if (facet == "horizontal") {
   p +
     facet_grid(. ~ gene, scales = "free") +
     labs(y = "Expression (logcounts)", fill = "Cluster") +
-    #scale_fill_manual(values = c("#1f78b4", "#b2df8a")) +
-    #scale_fill_brewer() +
     theme_bw(base_size = theme)
 }
   }
