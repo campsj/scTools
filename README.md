@@ -1,6 +1,9 @@
 # scTools
 Tools to help with analysis of single-cell transcriptome datasets
 
+## Install
+`devtools::install_github("campsj/scTools")
+
 ## Functions
 **plot_dims**
 Plot variables like clusters but also gene expression on PCA or tSNE dimensions.
