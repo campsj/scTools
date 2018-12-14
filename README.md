@@ -2,7 +2,7 @@
 Tools to help with analysis of single-cell transcriptome datasets
 
 ## Install
-`devtools::install_github("campsj/scTools")
+`devtools::install_github("campsj/scTools")`
 
 ## Functions
 **plot_dims**
